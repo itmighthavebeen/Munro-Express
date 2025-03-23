@@ -1,0 +1,128 @@
+/* Basic styling for the page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column; /* Stack content vertically on smaller screens */
+    overflow: hidden;
+}
+
+/* Center the container */
+.container {
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 800px;
+}
+
+/* Weather and Image Wrapper */
+.weather-and-image {
+    display: flex;
+    flex-wrap: wrap;  /* Allow items to wrap when screen size is smaller */
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+
+/* Weather Data Section */
+.weather-data {
+    max-width: 50%;  /* Weather data takes 50% of the width */
+    text-align: left;
+    margin-top: 20px;
+}
+
+/* Image Container */
+#image-container {
+    max-width: 50%;  /* Image container takes 50% of the width */
+    margin-top: 20px;
+}
+
+/* Styling for the image */
+.ben-lomond-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+/* Zoomable image */
+.zoomable-image {
+    width: 100%; /* Image takes full width of its container */
+    max-width: 600px; /* Maximum image width */
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Mobile-specific responsiveness */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .weather-and-image {
+        flex-direction: column;  /* Stack weather data and image on smaller screens */
+        align-items: center;
+    }
+
+    /* Weather Data and Image take full width on mobile */
+    .weather-data,
+    #image-container {
+        max-width: 90%;  /* Allow the weather data and image to take up more space */
+    }
+
+    .ben-lomond-image {
+        max-width: 100%;
+        margin-top: 10px;
+    }
+
+    .zoomable-image {
+        max-width: 100%;
+    }
+}
+
+/* Small devices (phones in portrait mode) */
+@media (max-width: 480px) {
+    .weather-and-image {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .weather-data,
+    #image-container {
+        max-width: 100%; /* Full width for weather data and image on extra small devices */
+    }
+
+    h1 {
+        font-size: 1.5rem;  /* Smaller title on small devices */
+    }
+}
+@media (min-width: 1200px) {
+    .container {
+        width: 70%;  /* Set width to 70% to use more space */
+    }
+
+    .weather-and-image {
+        justify-content: space-evenly; /* Distribute the weather data and image evenly */
+    }
+
+    .weather-data, 
+    #image-container {
+        max-width: 45%;  /* Adjust sections to make them evenly spaced */
+    }
+
+    h1 {
+        font-size: 2.5rem;  /* Larger title on large screens */
+    }
+
+    /* Optional: Adjust the image max-width for large screens */
+    .zoomable-image {
+        max-width: 80%;  /* Allow larger images on wide screens */
+    }
+}

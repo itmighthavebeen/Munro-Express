@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bag a Munro</title>
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css"> <!-- Link to the CSS file -->
+</head>
+<body>
+<!-- Main container for the content -->
+    <div class="container">
+
+    <!--<div class="header-container"> -->
+        <!-- Dropdown to populate with mountain names -->
+        <label for="mountain-dropdown">Select a Mountain:</label>
+        <select id="mountain-dropdown">
+            <option value="">Select a Mountain</option> 
+        </select>
+
+        <!-- Button for load mountain data -->
+        <button id="load-mountain-btn">Load Mountain Data</button>
+
+        <!-- Mountain Data and Image will be displayed here -->
+        <div id="mountain-data">
+            <!-- Dynamically inserted content will appear here -->
+        </div>
+   <!-- </div>-->
+
+
+        <h1>Zoomable Map of Scotland</h1>
+
+        <!-- Parent container for weather data and image -->
+        <!--<div class="weather-and-image"> -->
+            <!-- Weather Data Section -->
+            <div class="weather-data">
+                <!-- Add dynamically injected weather data here -->
+               <!--- <p id="weather-info"></p>-->
+            </div>
+
+            <!-- Image Container Section -->
+            <div id="image-container">
+                <img id="zoom-image" src="./images/Scotland_topographic_map-en.svg" alt="Zoomable map of Scotland" class="zoomable-image">
+            </div>
+       <!-- </div> -->
+    </div>
+
+    <!-- Link to the external JavaScript file, placed at the bottom of the body -->
+    <script src="index.js"></script>
+</body>
+</html>

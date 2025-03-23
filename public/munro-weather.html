@@ -1,0 +1,46 @@
+<!-- munro-weather.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mountain Details</title>
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Munro Weather Details</h1>
+        
+        <!-- Section to display the selected mountain's details -->
+        <div id="mountain-data">
+            <p id="mountain-name"></p>
+            <p id="coordinates"></p>
+        </div>
+        <div id="image-container">
+            <p>Loading image...</p>
+        </div> 
+        
+        <img class=weatherIcon id="weather-icon" alt="Weather Icon">
+        <div class="display-weather-data" id="displayWeatherData">
+           
+            <p id="weatherDesc">
+               
+            </p>
+            <p id="temperatureCelsius"></p>
+            <p id="temperatureFahrenheit"></p>
+            <p id="humidity"></p>
+            <p id="errorMessage" class="error-message"></p>
+          </div> 
+
+        <button class="top-right-button"onclick="window.history.back();">Back to Munro Detail</button>
+
+              <!-- Button to go back two pages to the main page -->
+        
+        <button class="top-left-button"onclick="window.history.go(-2);">Back to Main Page</button>
+    </div>
+
+    <script src="munro-weather.js"></script>
+</body>
+</html>
+
