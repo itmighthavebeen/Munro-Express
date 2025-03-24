@@ -7,9 +7,8 @@ function getQueryParam(param) {
     return urlParams.get(param);
 }
 
-
 // Function to fetch the image of the Munro from the backend i.e. server.js
-async function fetchImage() {
+/*async function fetchImage() {
     try {
        //
        //  const response = await fetch('/munro-image'); // Ensure this URL is correct and the endpoint is available
@@ -34,10 +33,8 @@ console.log("in munro detail",data.imageUrl);
         console.error('Error fetching image:', error);
         document.getElementById('image-container').innerHTML = '<p>Error fetching image.</p>';
     }
-};
+//};*/
 
-let latitude = 56.1881;
-let longitude = -4.6262;
 /////////////////////////
 async function getWeatherData(latitude,longitude) {
     const url = `http://localhost:1776/api/getWeather?lat=${latitude}&lon=${longitude}`;
@@ -117,7 +114,6 @@ function kelvinToFahrenheit(kelvin) {
 }
 
 
-
   
  // getWeatherData(latitude, longitude);
   /////////////////////////////////////
@@ -132,6 +128,9 @@ window.onload = async () => {
     const weatherDesc = getQueryParam('weatherDesc');
     const humidity = getQueryParam('humidity');
     console.log("??what, in weather page??", name, latitude);
+    const scrapedImage = getQueryParam('scrapedImage'); // Get the scrapedImage URL from the query parameters
+    console.log("Scraped image URL:", scrapedImage); 
+    console.log("in weather, this is url for image",scrapedImage);
 
     if (name && latitude && longitude) {
         // Display the mountain details on the page
@@ -147,8 +146,24 @@ window.onload = async () => {
 
     //document.getElementById('weather-data').textContent= `weather ${weather}`;
 
+
   //  await fetchMountainData(); // Load mountain data
-    await fetchImage(); // Load Munro image
+ //   await fetchImage(); // Load Munro image
+ console.log("in munro detail",scrapedImage);
+        if (scrapedImage) {
+          const img = document.createElement('img');
+            img.src = scrapedImage;
+            img.alt = 'Munro Image';
+            img.classList.add('munro-image');
+
+            const imageContainer = document.getElementById('image-container');
+            imageContainer.innerHTML = '';
+            imageContainer.appendChild(img);
+        } else {
+            console.log('No image found');
+        }
+
+
 
     function goToWeatherPage() {
         const name = getQueryParam('name');

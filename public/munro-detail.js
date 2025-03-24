@@ -13,6 +13,7 @@ var humidity = 0;
 var visibility = 0;
 var nearestTown = " ";
 var sunrise,sunset = 0;
+var scrapedImage = " ";
 
 
 // Function to fetch the image of the Munro from the backend i.e. server.js
@@ -24,10 +25,18 @@ async function fetchImage() {
        console.log("name of munro",nameOfMunro);
        const response = await fetch(`/munro-image?name=${nameOfMunro}`);
         const data = await response.json();
+
+        console.log("data", data);
+        
+        const thumbnail = data.imageUrls.find(img => img.type === 'thumbnail').url;
+        scrapedImage = data.imageUrls.find(img => img.type === 'scraped').url;
+console.log("thumbnail and scrape is:", thumbnail, scrapedImage);           
 console.log("in munro detail",data.imageUrl);
-        if (data.imageUrl) {
+//        if (data.imageUrl) {
+          if (thumbnail) {
             const img = document.createElement('img');
-            img.src = data.imageUrl;
+         //   img.src = data.imageUrl;
+         img.src=thumbnail;
             img.alt = 'Munro Image';
             img.classList.add('munro-image');
 
@@ -143,9 +152,10 @@ function goToWeatherPage() {
     const longitude = getQueryParam('longitude');
     console.log("values from detail before next page:", fahrenheit, weatherDesc, humidity);
 
-    if (fahrenheit !== undefined && weatherDesc !== undefined && humidity !== undefined) {
+   // if (fahrenheit !== undefined && weatherDesc !== undefined && humidity !== undefined) {
+    if (fahrenheit !== undefined && weatherDesc !== undefined && humidity !== undefined && scrapedImage) {
     // Build the URL to pass the parameters to the weather page
-    const url = `munro-weather.html?name=${encodeURIComponent(name)}&latitude=${encodeURIComponent(latitude)}&longitude=${encodeURIComponent(longitude)}&temperature_F=${encodeURIComponent(fahrenheit)}&weatherDesc=${encodeURIComponent(weatherDesc)}&humidity=${encodeURIComponent(humidity)}`;
+    const url = `munro-weather.html?name=${encodeURIComponent(name)}&latitude=${encodeURIComponent(latitude)}&longitude=${encodeURIComponent(longitude)}&temperature_F=${encodeURIComponent(fahrenheit)}&weatherDesc=${encodeURIComponent(weatherDesc)}&humidity=${encodeURIComponent(humidity)}&scrapedImage=${encodeURIComponent(scrapedImage)}`;
     console.log ("in munro detail url for weather page", url);
     
     // Redirect to the weather page with the parameters
