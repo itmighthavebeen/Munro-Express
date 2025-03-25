@@ -149,7 +149,7 @@ window.onload = async () => {
 
   //  await fetchMountainData(); // Load mountain data
  //   await fetchImage(); // Load Munro image
- console.log("in munro detail",scrapedImage);
+ console.log("in munro weather detail",scrapedImage);
         if (scrapedImage) {
           const img = document.createElement('img');
             img.src = scrapedImage;

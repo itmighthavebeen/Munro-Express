@@ -396,6 +396,68 @@ app.get('/api/insert-initial-data', async (req, res) => {
       res.status(500).json({ message: 'Error fetching image' });
   }
 });*/
+// Function to extract the file name from a URL
+//function getFileName(url) {
+  // Decode URL and extract the file name using the last part after '/'
+ // const decodedUrl = decodeURIComponent(url);
+ // const parts = decodedUrl.split('/');
+ // return parts[parts.length - 1]; // The last part is the file name
+//}
+////////////////////////////
+function extractFileName(url) {
+  // Decode the URL and extract the file name
+  const decodedUrl = decodeURIComponent(url);
+  const fileName = decodedUrl.split('/').pop().split(':').pop();
+
+  return fileName.toLowerCase(); // Make comparison case-insensitive
+}
+
+function normalizeFileName(fileName) {
+  // Remove any numeric prefix followed by 'px' (e.g., '500px-', '200px-', etc.)
+  fileName = fileName.replace(/^\d+px-/, ''); // Remove numeric prefix like '500px-'
+
+  // Replace spaces, underscores, and hyphens with a common character (e.g., remove them)
+  fileName = fileName.replace(/[\s_-]/g, ''); // Remove spaces, underscores, and hyphens
+
+  return fileName; // Return the normalized file name
+}
+
+function compareUrlsUsingIncludes(url1, url2) {
+  // Extract and normalize the file names from both URLs
+  let fileName1 = extractFileName(url1);
+  let fileName2 = extractFileName(url2);
+  
+  console.log("1 and 2", fileName1, fileName2);
+
+  // Normalize file names by removing unwanted numeric prefixes (e.g., '500px-', '200px-')
+  fileName1 = normalizeFileName(fileName1);
+  fileName2 = normalizeFileName(fileName2);
+
+  console.log("Normalized 1 and 2", fileName1, fileName2);
+
+  return fileName1 === fileName2;  
+
+  // Check if either of the normalized file names is included in the other URL
+  //return url1.includes(fileName2) || url2.includes(fileName1);
+}
+
+// Example URLs
+////const url1 = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/A-Mhaighdean-from-Slioch.jpg/500px-A-Mhaighdean-from-Slioch.jpg";
+//const url2 = "https://en.wikipedia.org/wiki/File%3AA-Mhaighdean-from-Slioch.jpg";
+
+// Compare the URLs
+//if (compareUrlsUsingIncludes(url1, url2)) {
+//  console.log("The URLs are similar enough (they contain the same file name).");
+//} else {
+//  console.log("The URLs are not similar enough.");
+//}
+
+// Example URLs
+//const url1 = "//en.wikipedia.org/wiki/File%3AAonach%20beag.jpg";
+//const url2 = "//upload.wikimedia.org/wikipedia/commons/6/68/Aonach_beag.jpg";
+
+
+
 /////////////////////////////////////////////////////////////
 
 // Scrape image from a Wikipedia page (you already have this function)
@@ -433,9 +495,9 @@ app.get('/munro-image', async (req, res) => {
       params: {
         action: 'query',
         titles: name,
-        prop: 'pageimages|images',
-        imlimit: '20',  // Limit to 5 images
-        pithumbsize: 500,  // Size for thumbnail
+        prop: 'pageimages|images', //get pageimage and all images
+        imlimit: '20',  // Limit to 20 images
+        pithumbsize: 500,  // Size 
         format: 'json'
       }
     });
@@ -461,8 +523,11 @@ app.get('/munro-image', async (req, res) => {
     // Get the thumbnail URL
     const thumbnailUrl = pages[pageId].thumbnail ? pages[pageId].thumbnail.source : null;
 
+
     // Get the image filenames (other images)
     const images = pages[pageId].images || [];
+
+ 
 
     ////////////////////////////
      // We need to go through each image URL and find the first one that does not contain 'commons-logo'
@@ -470,10 +535,33 @@ app.get('/munro-image', async (req, res) => {
 
      // Loop through images and check the URLs
      for (const image of images) {
-       const imagePageUrl = `https://en.wikipedia.org/wiki/${encodeURIComponent(image.title)}`;
+         const imagePageUrl = `https://en.wikipedia.org/wiki/${encodeURIComponent(image.title)}`;
+      // const image = images[i];
+        const validImageExtensions = ['.jpg', '.jpeg', '.png', '.gif', ];
+
+        const imageExtension = image.title.slice(-4).toLowerCase(); // Get last 4 chars (e.g., '.jpg', '.png')
+        console.log("extension is",imageExtension,image.title);
+
+           // Get the file names
+  //const fileName1 = getFileName(imagePageUrl);
+//  const fileName2 = getFileName(thumbnailUrl);
+//console.log("thumb2 and image1 are:",imagePageUrl, thumbnailUrl);
+//console.log("filenames are:", fileName1, fileName2);
+
+  let different_Images = false;
+// Check if the file names are the same
+if (compareUrlsUsingIncludes(imagePageUrl, thumbnailUrl)) {
+  
+  console.log("The URLs have the same file name:", imagePageUrl);
+} else {
+  different_Images = true;
+  console.log("The URLs do not have the same file name.");
+}
+
  
        // Check if the image URL contains 'commons-logo'
-       if (!imagePageUrl.includes('commons-logo')) {
+       if ((!imagePageUrl.includes('Commons-logo')) &&  (validImageExtensions.includes(imageExtension)) && different_Images) {
+        console.log("this is a valid url",imagePageUrl);
          validImageUrl = imagePageUrl;
          break; // Exit the loop once we find the first valid image URL
        }
@@ -494,8 +582,8 @@ app.get('/munro-image', async (req, res) => {
     // Prepare the response with the two URLs
     const imageUrls = [];
 
-    if (validImageUrl) {
-      imageUrls.push({ type: 'scraped', url: validImageUrl });
+    if (scrapedImageUrl) {
+      imageUrls.push({ type: 'scraped', url: scrapedImageUrl });
     }
 // Iterate over images and collect their URL and description
 //images.forEach(image => {
