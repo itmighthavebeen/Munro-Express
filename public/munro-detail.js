@@ -93,17 +93,12 @@ async function getWeatherData(latitude,longitude) {
         //is it truthy?
         const iconCode = data.weatherResponse.iconCode;
 console.log("icon",iconCode);
-       // const iconCode = data.weatherResponse.weather.icon;
+      
         const temperatureKelvin = data.weatherResponse.temperature;
-       // const humidity = data.weatherResponse.humidity;
-        ///////////////
+     
           // Build the URL for the weather icon
           const iconUrl = `https://openweathermap.org/img/wn/${iconCode}.png`;
-            
-          // Display the icon in an <img> element
-         // const weatherIcon = document.getElementById('weather-icon');
-        //  weatherIcon.src = iconUrl;
-        //  weatherIcon.alt = data.weatherResponse.weather;
+
         const kelvinTemp = temperatureKelvin; 
 console.log(temperatureKelvin);
 
@@ -126,9 +121,21 @@ console.log("toen", nearestTown);
 
         // Display the town and sun data in the HTML
  
-        document.getElementById('sunrise').textContent = `Sunrise: ${dateTimeStr_rise}`;
+       // document.getElementById('sunrise').textContent = `Sunrise: ${dateTimeStr_rise}`;
         document.getElementById('sunset').textContent = `Sunset: ${dateTimeStr_set}`;
-        document.getElementById('nearestTown').textContent = `Nearest Town: ${nearestTown} Scotland`;
+        const sunrisElement = document.getElementById('sunrise');
+        const sunriseDataElement = document.createElement('span');
+        sunriseDataElement.textContent = ` ${dateTimeStr_rise}`; // Dynamically add the town name
+ 
+         sunrisElement.appendChild(sunriseDataElement);
+
+        const nearestTownElement = document.getElementById('nearestTown');
+       const townNameElement = document.createElement('span');
+       townNameElement.textContent = ` ${nearestTown}, Scotland`; // Dynamically add the town name
+
+        nearestTownElement.appendChild(townNameElement);
+
+    //    document.getElementById('nearestTown').textContent  += `${nearestTown}, Scotland`;
        
     } else {
         document.getElementById('errorMessage').textContent = "Error: Could not fetch weather data.";
@@ -152,7 +159,6 @@ function goToWeatherPage() {
     const longitude = getQueryParam('longitude');
     console.log("values from detail before next page:", fahrenheit, weatherDesc, humidity);
 
-   // if (fahrenheit !== undefined && weatherDesc !== undefined && humidity !== undefined) {
     if (fahrenheit !== undefined && weatherDesc !== undefined && humidity !== undefined && scrapedImage) {
     // Build the URL to pass the parameters to the weather page
     const url = `munro-weather.html?name=${encodeURIComponent(name)}&latitude=${encodeURIComponent(latitude)}&longitude=${encodeURIComponent(longitude)}&temperature_F=${encodeURIComponent(fahrenheit)}&weatherDesc=${encodeURIComponent(weatherDesc)}&humidity=${encodeURIComponent(humidity)}&scrapedImage=${encodeURIComponent(scrapedImage)}`;
@@ -166,11 +172,6 @@ function goToWeatherPage() {
 
 }
 
-
-
-  
- // getWeatherData(latitude, longitude);
-  /////////////////////////////////////
 
 window.onload = async () => {
     console.log("in window munro load");
@@ -191,7 +192,7 @@ window.onload = async () => {
         document.getElementById('translation').textContent = `Gaelic Translation: ${translation}`;
         document.getElementById('comments').textContent = `Interesting Fact: ${comments}`;
         document.getElementById('coordinates').textContent = `Coordinates: Latitude: ${latitude}, Longitude: ${longitude}`;
-        document.getElementById('height').textContent = `Height: ${height}`;
+        document.getElementById('height').textContent = `Height: ${height} feet`;
     
         console.log("data in detail=", latitude, longitude);
         await getWeatherData(latitude, longitude);
@@ -200,22 +201,7 @@ window.onload = async () => {
         document.getElementById('mountain-data').innerHTML = '<p>Error: Mountain data not found.</p>';
     }
 
-   
-  //  await fetchMountainData(); // Load mountain data
     await fetchImage(); // Load Munro image
 };
-
-/*window.onload = function() {
-    // Get the query parameter from the URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const mountainName = urlParams.get('name');
-
-    if (mountainName) {
-        // Display the mountain name
-        document.getElementById('mountain-name').textContent = `Mountain: ${mountainName}`;
-    } else {
-        document.getElementById('mountain-name').textContent = "Mountain not found.";
-    }
-};*/
 
 

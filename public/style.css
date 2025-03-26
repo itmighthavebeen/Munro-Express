@@ -16,7 +16,9 @@ body {
     overflow-y: auto;
     }
     
-
+    .bold-label {
+        font-weight: bold;
+      }
 
 /* Center the container */
 .container {
@@ -58,7 +60,10 @@ h1 {
     font-size: 3.5rem;
     color: #333;
 }
-
+.bold-label {
+    font-weight: bold;
+    color:#0071bc;
+  }
 .weather-data {
     margin-top: 1.2rem;
   }
@@ -197,6 +202,9 @@ button {
     .display-weather-data{
         font-size: 0.4rem;
     }
+    .bold-label {
+        font-weight: bold;
+      }
 
     .weather-data,
     #image-container {
@@ -225,6 +233,9 @@ button {
     #image-container {
         max-width: 100%;  
     }
+    .bold-label {
+        font-weight: bold;
+      }
 
     h1 {
         font-size: 1.5rem; 
@@ -256,6 +267,9 @@ button {
     #image-container {
         max-width: 100%;  
     }
+    .bold-label {
+        font-weight: bold;
+      }
 
     h1 {
         font-size: 1.5rem; 
@@ -319,7 +333,7 @@ button {
     .container,
     .display-town-data,
     .display-weather-data{
-        font-size: 1.5rem;
+        font-size: 1.1em;
     }
     .weather-data, 
     #image-container {
