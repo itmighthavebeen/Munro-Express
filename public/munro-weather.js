@@ -3,193 +3,170 @@
 
 // Parse the query string from the URL
 function getQueryParam(param) {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(param);
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(param);
 }
 
-// Function to fetch the image of the Munro from the backend i.e. server.js
-/*async function fetchImage() {
-    try {
-       //
-       //  const response = await fetch('/munro-image'); // Ensure this URL is correct and the endpoint is available
-       const nameOfMunro = getQueryParam('name');
-       console.log("name of munro",nameOfMunro);
-       const response = await fetch(`/munro-image?name=${nameOfMunro}`);
-        const data = await response.json();
-console.log("in munro detail",data.imageUrl);
-        if (data.imageUrl) {
-            const img = document.createElement('img');
-            img.src = data.imageUrl;
-            img.alt = 'Munro Image';
-            img.classList.add('munro-image');
+/*async function getWeatherData(latitude, longitude) {
+  const url = `http://localhost:1776/api/getWeather?lat=${latitude}&lon=${longitude}`;
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
 
-            const imageContainer = document.getElementById('image-container');
-            imageContainer.innerHTML = ''; // Clear any existing content
-            imageContainer.appendChild(img);
+    if (data && data.weatherResponse) {
+      const weather = data.weatherResponse.weather;
+      //is it truthy?
+      const iconCode = data.weatherResponse.iconCode;
+
+      const temperatureKelvin = data.weatherResponse.temperature;
+      const humidity = data.weatherResponse.humidity;
+      const kelvinTemp = temperatureKelvin;
+
+      // Function to fetch and display the weather icon
+      function displayWeatherIcon(iconCode, weatherDescription) {
+        const iconUrl = `https://openweathermap.org/img/wn/${iconCode}.png`;
+
+        const weatherIcon = document.getElementById("weather-icon");
+
+        // Check if the element exists before updating
+        if (weatherIcon) {
+          weatherIcon.src = iconUrl; // Set the src to display the icon
+          weatherIcon.alt = `${weatherDescription} icon`; // Provide more context for the alt text
         } else {
-            console.log('No image found');
+          console.error("Weather icon element not found.");
         }
-    } catch (error) {
-        console.error('Error fetching image:', error);
-        document.getElementById('image-container').innerHTML = '<p>Error fetching image.</p>';
-    }
-//};*/
+      }
 
-/////////////////////////
-async function getWeatherData(latitude,longitude) {
-    const url = `http://localhost:1776/api/getWeather?lat=${latitude}&lon=${longitude}`;
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
-      
-      console.log("in munro detail weather",data);
-      if (data && data.weatherResponse) {
-        
-        const weather = data.weatherResponse.weather;
-        //is it truthy?
-        const iconCode = data.weatherResponse.iconCode;
-console.log("icon",iconCode);
-       // const iconCode = data.weatherResponse.weather.icon;
-        const temperatureKelvin = data.weatherResponse.temperature;
-        const humidity = data.weatherResponse.humidity;
-        ///////////////
-          // Build the URL for the weather icon
-      //    const iconUrl = `https://openweathermap.org/img/wn/${iconCode}.png`;
-            
-          // Display the icon in an <img> element
-      //   const weatherIcon = document.getElementById('weather-icon');
-      //    weatherIcon.src = iconUrl;
-      //    weatherIcon.alt = data.weatherResponse.weather;
-        const kelvinTemp = temperatureKelvin; 
-console.log(temperatureKelvin);
-// Function to fetch and display the weather icon
-function displayWeatherIcon(iconCode, weatherDescription) {
-    const iconUrl = `https://openweathermap.org/img/wn/${iconCode}.png`;
+      // Convert to Celsius and Fahrenheit
+      // const celsius = kelvinToCelsius(kelvinTemp);
+      // const fahrenheit = kelvinToFahrenheit(kelvinTemp);
 
-    const weatherIcon = document.getElementById('weather-icon');
-    
-    // Check if the element exists before updating
-    if (weatherIcon) {
-        weatherIcon.src = iconUrl; // Set the src to display the icon
-        weatherIcon.alt = `${weatherDescription} icon`; // Provide more context for the alt text
+      // Display the weather data in the HTML
+      document.getElementById("weatherName").textContent = ` ${weather}`;
+      document.getElementById("celsiusName").textContent = ` ${celsius.toFixed(
+        2
+      )}°C`;
+      document.getElementById(
+        "fahrenheitName"
+      ).textContent = ` ${fahrenheit.toFixed(2)}°F`;
+      document.getElementById("humidityName").textContent = ` ${humidity}%`;
+      displayWeatherIcon(iconCode, data.weatherResponse.weather);
     } else {
-        console.error('Weather icon element not found.');
+      document.getElementById("errorMessage").textContent =
+        "Error: Could not fetch weather data.";
     }
-}
-
-
-
-
-        
-
-// Convert to Celsius and Fahrenheit
-const celsius = kelvinToCelsius(kelvinTemp);
-const fahrenheit = kelvinToFahrenheit(kelvinTemp);
-
-// Output the result
-console.log(`Temperature in Celsius: ${celsius.toFixed(2)}°C`);
-console.log(`Temperature in Fahrenheit: ${fahrenheit.toFixed(2)}°F`);
-
-        // Display the weather data in the HTML
-        document.getElementById('weatherDesc').textContent = `Weather: ${weather}`;
-        document.getElementById('temperatureCelsius').textContent = `Temperature: ${celsius.toFixed(2)}°C`;
-        document.getElementById('temperatureFahrenheit').textContent = `Temperature: ${fahrenheit.toFixed(2)}°F`;
-        document.getElementById('humidity').textContent = `Humidity: ${humidity}%`;
-        displayWeatherIcon(iconCode, data.weatherResponse.weather);
-    } else {
-        document.getElementById('errorMessage').textContent = "Error: Could not fetch weather data.";
-    }
-    } catch (error) {
-      console.log(error);
-    }
+  } catch (error) {
+    console.log(error);
   }
-  // Function to convert Kelvin to Celsius
-function kelvinToCelsius(kelvin) {
-    return kelvin - 273.15;
-}
+} */
+
+// Function to convert Kelvin to Celsius
+//function kelvinToCelsius(kelvin) {
+//  return kelvin - 273.15;
+//}
 
 // Function to convert Kelvin to Fahrenheit
-function kelvinToFahrenheit(kelvin) {
-    return (kelvin - 273.15) * 9/5 + 32;
-}
-
-
-  
- // getWeatherData(latitude, longitude);
-  /////////////////////////////////////
+//function kelvinToFahrenheit(kelvin) {
+//////  return ((kelvin - 273.15) * 9) / 5 + 32;
+//}
 
 window.onload = async () => {
-    console.log("in window munro load");
-    // Use the query parameters on munro-detail.html
-    const name = getQueryParam('name');
-    const latitude = getQueryParam('latitude');
-    const longitude = getQueryParam('longitude');
-    const temperature = getQueryParam('temperature');
-    const weatherDesc = getQueryParam('weatherDesc');
-    const humidity = getQueryParam('humidity');
-    console.log("??what, in weather page??", name, latitude);
-    const scrapedImage = getQueryParam('scrapedImage'); // Get the scrapedImage URL from the query parameters
-    console.log("Scraped image URL:", scrapedImage); 
-    console.log("in weather, this is url for image",scrapedImage);
+  // Use the query parameters on munro-detail.html
+  const name = getQueryParam("name");
+  const latitude = getQueryParam("latitude");
+  const longitude = getQueryParam("longitude");
+  const fahrenheit = getQueryParam("temperature_F");
+  const celsius = getQueryParam("temperature_C");
+  const weatherDesc = getQueryParam("weatherDesc");
+  const humidity = getQueryParam("humidity");
+  const scrapedImage = getQueryParam("scrapedImage");
+  const iconUrl = getQueryParam("iconUrl");
+  const iconCode = getQueryParam("iconCode");
 
-    if (name && latitude && longitude) {
-        // Display the mountain details on the page
-        document.getElementById('mountain-name').textContent = `Mountain Name: ${name}`;
-        document.getElementById('coordinates').textContent = `Coordinates: Latitude: ${latitude}, Longitude: ${longitude}`;
-    
-        console.log("data in detail=", latitude, longitude);
-        await getWeatherData(latitude, longitude);
+  let numberValueF = parseFloat(fahrenheit);
+  let numberValueC = parseFloat(celsius);
+  console.log("iconCode=", iconCode, typeof iconCode);
+  displayWeatherIcon(iconCode, weatherDesc);
+
+  if (name && latitude && longitude) {
+    // Display the mountain details on the page
+    document.getElementById("munroName").textContent = ` ${name}`;
+    document.getElementById(
+      "coordinatesName"
+    ).textContent = ` Latitude: ${latitude}, Longitude: ${longitude}`;
+  }
+  //   await getWeatherData(latitude, longitude);
+  // } else {
+  // If no data is found, show an error message
+  //   document.getElementById("mountain-data").innerHTML =
+  //    "<p>Error: Mountain data not found.</p>";
+  //  }
+  // Convert to Celsius and Fahrenheit
+  //const temperatureKelvin = temperature;
+  //const humidity = humidity;
+  // const kelvinTemp = temperatureKelvin;
+  // const celsius = kelvinToCelsius(kelvinTemp);
+  // const fahrenheit = kelvinToFahrenheit(kelvinTemp);
+
+  // Display the weather data in the HTML
+  document.getElementById("weatherName").textContent = ` ${weatherDesc}`;
+  document.getElementById("celsiusName").textContent = ` ${numberValueC.toFixed(
+    2
+  )}°C`;
+  document.getElementById(
+    "fahrenheitName"
+  ).textContent = ` ${numberValueF.toFixed(2)}°F`;
+  document.getElementById("humidityName").textContent = ` ${humidity}%`;
+
+  if (scrapedImage) {
+    const img = document.createElement("img");
+    let imageDescription = "Image of Munro" + name;
+    img.src = scrapedImage;
+    img.alt = imageDescription;
+    img.classList.add("munro-image");
+
+    const imageContainer = document.getElementById(
+      "image-container-on-weather"
+    );
+    imageContainer.innerHTML = "";
+    imageContainer.appendChild(img);
+  } else {
+    console.log("No image found");
+  }
+
+  function displayWeatherIcon(iconCode, weatherDescription) {
+    console.log("icon code before load", iconCode);
+    const iconUrl = `https://openweathermap.org/img/wn/${iconCode}.png`;
+    console.log("weather icon", iconUrl);
+
+    const weatherIcon = document.getElementById("weather-icon");
+
+    // Check if the element exists before updating
+    if (weatherIcon) {
+      weatherIcon.src = iconUrl; // Set the src to display the icon
+      weatherIcon.alt = `${weatherDescription} icon`; // Provide more context for the alt text
     } else {
-        // If no data is found, show an error message
-        document.getElementById('mountain-data').innerHTML = '<p>Error: Mountain data not found.</p>';
+      console.error("Weather icon element not found.");
     }
+  }
 
-    //document.getElementById('weather-data').textContent= `weather ${weather}`;
+  function goToWeatherPage() {
+    const name = getQueryParam("name");
+    const latitude = getQueryParam("latitude");
+    const longitude = getQueryParam("longitude");
 
+    // Build the URL to pass the parameters to the weather page
+    const url = `munro-weather.html?name=${encodeURIComponent(
+      name
+    )}&latitude=${encodeURIComponent(latitude)}&longitude=${encodeURIComponent(
+      longitude
+    )}&temperature=${encodeURIComponent(
+      temperature
+    )}&weatherDesc=${encodeURIComponent(
+      weatherDesc
+    )}&humidity=${encodeURIComponent(humidity)}`;
 
-  //  await fetchMountainData(); // Load mountain data
- //   await fetchImage(); // Load Munro image
- console.log("in munro weather detail",scrapedImage);
-        if (scrapedImage) {
-          const img = document.createElement('img');
-            img.src = scrapedImage;
-            img.alt = 'Munro Image';
-            img.classList.add('munro-image');
-
-            const imageContainer = document.getElementById('image-container');
-            imageContainer.innerHTML = '';
-            imageContainer.appendChild(img);
-        } else {
-            console.log('No image found');
-        }
-
-
-
-    function goToWeatherPage() {
-        const name = getQueryParam('name');
-        const latitude = getQueryParam('latitude');
-        const longitude = getQueryParam('longitude');
-    
-        // Build the URL to pass the parameters to the weather page
-        const url = `munro-weather.html?name=${encodeURIComponent(name)}&latitude=${encodeURIComponent(latitude)}&longitude=${encodeURIComponent(longitude)}&temperature=${encodeURIComponent(weatherData.temperature)}&weatherDesc=${encodeURIComponent(weatherData.weatherDesc)}&humidity=${encodeURIComponent(weatherData.humidity)}`;
-        
-        // Redirect to the weather page with the parameters
-        window.location.href = url;
-    }
-    
+    // Redirect to the weather page with the parameters
+    window.location.href = url;
+  }
 };
-console.log("in munro weather");
-/*window.onload = function() {
-    // Get the query parameter from the URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const mountainName = urlParams.get('name');
-
-    if (mountainName) {
-        // Display the mountain name
-        document.getElementById('mountain-name').textContent = `Mountain: ${mountainName}`;
-    } else {
-        document.getElementById('mountain-name').textContent = "Mountain not found.";
-    }
-};*/
-
-

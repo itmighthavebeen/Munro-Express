@@ -1,57 +1,73 @@
 <!-- munro-detail.html -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mountain Details</title>
-    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Munro Details</title>
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div class="container">
-        <h1>Mountain Details</h1>
-        
-        <!-- Section to display the selected mountain's details -->
-        <div id="mountain-data">
-            <p id="mountain-name"></p>
-            <p id="gaelic"></p>
-            <p id="translation"></p>
-            <p id="comments"></p>
-            <p id="coordinates"></p>
-        </div>
-        <div id="image-container">
-            <p>Loading image...</p>
-        </div> 
-        <div class="display-town-data" id="displayTownData">
-            <p id="nearestTown" class="nearest-town"> 
-                <span class="bold-label">Nearest Town:</span>
-            </p> 
-            <p id="height" class="height">
-                <span class="bold-label">Height:</span> 
-            </p>
-            <p id="sunrise" class="sunrise">
-                <span class="bold-label">Sunrise:</span>
-            </p>
-            <p id="sunset" class="sunset">
-                <span class="bold-label">Sunset:</span>
-            </p>
-            <p id="errorMessage" class="error-message"></p>
-            <p id="weatherDesc"></p>
-           <!-- <img id="weather-icon" alt="Weather Icon"> -->
-            <p id="temperatureCelsius"></p>
-            <p id="temperatureFahrenheit"></p>
-            <p id="humidity"></p>
-          </div> 
+      <header>
+        <h1>Munro Details</h1>
+      </header>
 
-        <button class="top-left-button"onclick="window.history.back();">Back to Main</button>
-    <!--   <button onclick="window.location.href='munro-weather.html';">Go to Weather Page</button>   -->
-    <button class="top-right-button"onclick="goToWeatherPage();">Go to Weather Page</button>
+      <!-- Section to display the selected mountain's details -->
+      <div tabindex="0" id="mountain-data">
+        <p id="mountain-name">
+          <span class="bold-label">Munro Name:</span>
+          <span id="munroName"></span>
+        </p>
+        <p id="gaelic">
+          <span class="bold-label">Gaelic:</span>
+          <span id="gaelicName"></span>
+        </p>
+        <p id="translation">
+          <span class="bold-label">Translation:</span>
+          <span id="translationName"></span>
+        </p>
+        <p id="comments">
+          <span class="bold-label"> Interesting Fact:</span>
+          <span id="factName"></span>
+        </p>
+        <p id="coordinates">
+          <span class="bold-label">Coordinates:</span>
+          <span id="coordinatesName"></span>
+        </p>
+      </div>
+      <div tabindex="0" id="image-container">
+        <p>Loading image...</p>
+      </div>
+      <div tabindex="0" class="display-town-data" id="displayTownData">
+        <p id="nearestTown" class="nearest-town">
+          <span class="bold-label">Nearest Town:</span>
+          <span id="townName"></span>
+        </p>
+        <p id="height" class="height">
+          <span class="bold-label">Height:</span>
+          <span id="heightName"></span>
+        </p>
+        <p id="sunrise" class="sunrise">
+          <span class="bold-label">Sunrise:</span>
+          <span id="sunriseName"></span>
+        </p>
+        <p id="sunset" class="sunset">
+          <span class="bold-label">Sunset:</span>
+          <span id="sunsetName"></span>
+        </p>
+        <p id="errorMessage" class="error-message"></p>
+        <p id="weatherDesc"></p>
+      </div>
 
-
-
+      <button class="top-left-button" onclick="window.history.back();">
+        Back to Main
+      </button>
+      <button class="top-right-button" onclick="goToWeatherPage();">
+        Go to Weather Page
+      </button>
     </div>
     <script src="munro-detail.js"></script>
-</body>
+  </body>
 </html>
-

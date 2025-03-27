@@ -1,46 +1,65 @@
 <!-- munro-weather.html -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mountain Details</title>
-    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div class="container">
+      <header>
         <h1>Munro Weather Details</h1>
-        
-        <!-- Section to display the selected mountain's details -->
-        <div id="mountain-data">
-            <p id="mountain-name"></p>
-            <p id="coordinates"></p>
-        </div>
-        <div id="image-container">
-            <p>Loading image...</p>
-        </div> 
-        
-        <img class=weatherIcon id="weather-icon" alt="Weather Icon">
-        <div class="display-weather-data" id="displayWeatherData">
-           
-            <p id="weatherDesc">
-               
-            </p>
-            <p id="temperatureCelsius"></p>
-            <p id="temperatureFahrenheit"></p>
-            <p id="humidity"></p>
-            <p id="errorMessage" class="error-message"></p>
-          </div> 
+      </header>
+      <!-- Section to display the selected mountain's details -->
+      <div tabindex="0" id="mountain-data">
+        <p id="mountain-name">
+          <span class="bold-label">Munro Name:</span>
+          <span id="munroName"></span>
+        </p>
+        <p id="coordinates">
+          <span class="bold-label">Coordinates:</span>
+          <span id="coordinatesName"></span>
+        </p>
+      </div>
+      <div tabindex="0" id="image-container-on-weather">
+        <p>Loading image...</p>
+      </div>
 
-        <button class="top-right-button"onclick="window.history.back();">Back to Munro Detail</button>
+      <img class="weatherIcon" id="weather-icon" alt="Weather Icon" />
+      <div tabindex="0" class="display-weather-data" id="displayWeatherData">
+        <p id="weatherDesc">
+          <span class="bold-label">Weather:</span>
+          <span id="weatherName"></span>
+        </p>
+        <p id="temperatureCelsius">
+          <span class="bold-label">Temperature:</span>
+          <span id="celsiusName"></span>
+        </p>
+        <p id="temperatureFahrenheit">
+          <span class="bold-label">Temperature:</span>
+          <span id="fahrenheitName"></span>
+        </p>
+        <p id="humidity">
+          <span class="bold-label">Humidity:</span>
+          <span id="humidityName"></span>
+        </p>
+        <p id="errorMessage" class="error-message"></p>
+      </div>
 
-              <!-- Button to go back two pages to the main page -->
-        
-        <button class="top-left-button"onclick="window.history.go(-2);">Back to Main Page</button>
+      <button class="top-right-button" onclick="window.history.back();">
+        Back to Munro Detail
+      </button>
+
+      <!-- Button to go back two pages to the main page -->
+
+      <button class="top-left-button" onclick="window.history.go(-2);">
+        Back to Main Page
+      </button>
     </div>
 
     <script src="munro-weather.js"></script>
-</body>
+  </body>
 </html>
-
