@@ -2,7 +2,7 @@
 
 Fàilte!
 This is an Express app that displays Munro information, across 3 dynamically loaded web pages.
-In Scotland, A Munro is a mountain that is over 3,000 feet (914.4 meters) in height, named after Sir Hugh Munro who surveyed and cataloged them in 1891. They are beautiful and plentiful with 282 Munros across Scotland. Scotland is a Right To Roam country, granting everyone the right to access land and inland water for recreational purposes, provided they behave responsibly and follow the Scottish Outdoor Access Code. So pick a Munro and get out there! To make it easier to research the Munro, a mongo DB of the top 10 Munros was loaded to provide data for the detail on the pages. Two APIs where called to get weather information and images of the mountains.
+In Scotland, A Munro is a mountain that is over 3,000 feet (914.4 meters) in height, named after Sir Hugh Munro who surveyed and cataloged them in 1891. They are beautiful and plentiful with 282 Munros across Scotland. Scotland is a Right To Roam country, granting everyone the right to access land and inland water for recreational purposes, provided they behave responsibly and follow the Scottish Outdoor Access Code. So pick a Munro and get out there! To make it easier to research the Munro, a mongo DB of the top 10 Munros was loaded to provide data for the detail on the pages. Two APIs where called to get weather information and images of the mountains. This project was created, tested and run only on Windows 10/11 machines.
 
 Let's take a look at the details of the app:
 
