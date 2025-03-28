@@ -80,7 +80,8 @@ function unixTimeToDateTime(unixTimestamp) {
 }
 
 //
-// API call to weather api for info given latitude and longitude from store MongoDB
+// API call to weather api for info given latitude and longitude stored in MongoDB
+// Call this here and pass data to next window
 //
 async function getWeatherData(latitude, longitude) {
   const url = `http://localhost:1776/api/getWeather?lat=${latitude}&lon=${longitude}`;
@@ -98,8 +99,6 @@ async function getWeatherData(latitude, longitude) {
 
       //is it truthy?
       iconCode = data.weatherResponse.iconCode;
-      console.log("icon code", iconCode);
-      console.log("type of ", typeof iconCode);
 
       const temperatureKelvin = data.weatherResponse.temperature;
 

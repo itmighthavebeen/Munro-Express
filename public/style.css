@@ -151,7 +151,7 @@ button {
 /* Optional: Hover effect for the dropdown */
 #mountain-dropdown:hover {
   border-color: #0071bc;
-  background-color: #d4b7d2;
+  background-color: #d3c6d2;
 }
 
 /* Optional: Focus effect for better accessibility */
@@ -206,7 +206,8 @@ button {
 }
 
 /* Using media queries for responsive */
-
+/**/
+/**/
 @media only screen and (max-width: 728px) {
   .top-right-button,
   .top-left-button {
@@ -260,6 +261,7 @@ button {
 @media only screen and (min-width: 728px) {
   .container {
     width: 90%;
+    height: 90%;
   }
 
   .weather-and-image {
@@ -282,11 +284,11 @@ button {
   }
   .weather-data,
   #image-container {
-    height: 40%;
-    width: 40%;
+    height: 30%;
+    width: 30%;
   }
   #image-container-on-weather {
-    height: 10%;
+    height: 30%;
     /*  width: 30%;*/
     max-width: 30%;
     overflow: hidden;

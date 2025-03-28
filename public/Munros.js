@@ -1,7 +1,7 @@
 // models/Munros.js
 const mongoose = require("mongoose");
 
-// Define the mountain schema
+// Define the mountain schema used in my mongo DB
 const mountainSchema = new mongoose.Schema({
   name: { type: String, required: true },
   gaelic: { type: String, required: true },
