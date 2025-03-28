@@ -253,9 +253,9 @@ app.get("/munro-image", async (req, res) => {
       //
       //check for valid extensions that work for our page
       //
-      const validImageExtensions = [".jpg", ".jpeg", ".png", ".gif"];
+      const validImageExtensions = [".jpg", ".jpeg", ".gif"];
 
-      const imageExtension = image.title.slice(-4).toLowerCase(); // Get last 4 chars (e.g., '.jpg', '.png')
+      const imageExtension = image.title.slice(-4).toLowerCase(); // Get last 4 chars (e.g., '.jpg', '.gif')
 
       let different_Images = false;
       // Check if the file names are the same

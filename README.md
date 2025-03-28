@@ -15,7 +15,7 @@ Let's take a look at the details of the app:
 
 - **Analyze data that is stored in arrays, objects, sets or maps and display information about it in your app.**
 
-  - The array of images is analyzed to pick out the images that have the file type of ".jpg", ".jpeg", ".png", ".gif" and that are a different image than the one that is the tumbnail image of the Munro page. The API is asked to bring back 20 images to look through so the app can display 2 different images of the Munro.
+  - The array of images is analyzed to pick out the images that have the file type of ".jpg", ".jpeg", ".gif" and that are a different image than the one that is the tumbnail image of the Munro page. The API is asked to bring back 20 images to look through so the app can display 2 different images of the Munro.
 
 - **Create a function that accepts two or more input parameters and returns a value that is calculated or determined by the inputs. Basic math functions don’t count (e.g. addition, etc).**
 
