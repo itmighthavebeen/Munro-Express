@@ -169,12 +169,12 @@ button {
 /* Style for the Load Mountain Data button */
 #load-mountain-btn {
   padding: 5px 10px;
-  min-width: 50px;
-  font-size: 0.5rem;
+  min-width: 60px;
+  font-size: 0.8rem;
   border-radius: 8px;
   background-color: #0071bc;
   color: white;
-  border: none;
+  border: black;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -202,7 +202,6 @@ button {
 .zoomable-image {
   width: 25vw;
   height: 65vh;
-  /*   flex: 2 1 auto; */
 }
 
 /* Using media queries for responsive */
@@ -305,130 +304,3 @@ button {
     max-width: 80%;
   }
 }
-
-/*@media only screen and (min-width: 768px) {
-  .container {
-    width: 100%;
-  }
-
-  .weather-and-image {
-    justify-content: center;
-  }
-  #mountain-data,
-  .container,
-  #townName,
-  #heightName,
-  #sunriseName,
-  #munroName,
-  #gaelicName,
-  #translationName,
-  #coordinatesName,
-  #factName,
-  #sunsetName,
-  .display-town-data,
-  .display-weather-data {
-    font-size: 1rem;
-  }
-  .weather-data,
-  #image-container {
-    max-width: 100%;
-  }
-  .bold-label {
-    font-weight: bold;
-  }
-
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  .zoomable-image {
-    max-width: 80%;
-  }
-}
-@media only screen and (min-width: 992px) {
-  .container {
-    width: 100%;
-  }
-  .top-right-button {
-    right: 0.05rem; 
-  }
-
-  .top-left-button {
-    left: 0.05rem; 
-  }
-  .weather-and-image {
-    aspect-ratio: auto;
-    justify-content: center;
-  }
-  #mountain-data,
-  .container,
-  #townName,
-  #heightName,
-  #sunriseName,
-  #munroName,
-  #gaelicName,
-  #translationName,
-  #coordinatesName,
-  #factName,
-  #sunsetName,
-  .display-town-data,
-  .display-weather-data {
-    font-size: 1rem;
-  }
-  .weather-data,
-  #image-container {
-    max-width: 100%;
-  }
-
-  h1 {
-    font-size: 1rem;
-  }
-
-  .zoomable-image {
-    max-width: 80%;
-  }
-}*/
-
-/*@media only screen and (min-width: 1200px) {
-  .container {
-    width: 100%;
-  }
-  .top-right-button {
-    right: 0.5rem;
-  }
-
-  .top-left-button {
-    left: 0.5rem;
-  }
-  .weather-and-image {
-    justify-content: center;
-  }
-  #mountain-data,
-  #townName,
-  #heightName,
-  #sunriseName,
-  #munroName,
-  #gaelicName,
-  #translationName,
-  #coordinatesName,
-  #factName,
-  #sunsetName,
-  .container,
-  .display-town-data,
-  .display-weather-data {
-    font-size: 0.95em;
-  }
-  .weather-data,
-  #image-container {
-    aspect-ratio: auto;
-    max-width: 100%;
-  }
-
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  .zoomable-image {
-    max-width: 80%;
-  }
-}*/

@@ -323,7 +323,6 @@ app.get("/api/mountains", async (req, res) => {
 //
 ////////////WEATHER DATA call to Openweather API ///////////////////////////////////
 //
-console.log("api key", process.env.API_KEY);
 async function getWeatherData(latitude, longitude) {
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&unit=metrics&appid=${process.env.API_KEY}`;
 

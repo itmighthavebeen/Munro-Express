@@ -31,21 +31,53 @@ Let's take a look at the details of the app:
 - **Interact with a database to store and retrieve information (e.g. MySQL, MongoDB, etc).**
   \*Created a Mountain database (defined in Munros.js) in mongo. Store the information on the first run of the app, and then retrieves the information from then on.
 
-Want to give this app a try. Follow these steps to run the app:
+* **Additionally created a working favicon icon for the app**
 
-"author": "",
-"license": "ISC",
-"dependencies" : {
-"axios": "^1.8.1",
-"cheerio": "^1.0.0",
-"cors": "^2.8.5",
-"dotenv": "^16.4.7",
-"express": "^4.21.2",
-"moment": "^2.30.1",
-"moment-timezone": "^0.5.47",
-"mongodb": "^6.14.0",
-"mongoose": "^8.11.0",
-"serve-favicon": "^2.5.0"
-},
-"devDependencies": {
-"nodemon": "^3.1.9"
+Want to give this app a try? Follow these steps to run the app:
+
+**1.** Install Node.js if not on the PC.
+
+- You can verify you have it with the node -v command in bash windows. This will show you the version # if installed.
+
+- To Install Node.js: Go to the official Node.js website and download the latest LTS version for Window. Verify with node -v and npm -v that the install was successful.
+
+**2.** Clone the app and download to your PC. You will need a github account and Git installed on your PC.
+
+- To clone the app, open github.com and sign in. Go to https://github.com/itmighthavebeen/Munro-Express. Select the drop down arrow by the green Code button and copy the URL.
+- Go to the desired download location on your PC. Highlight the location folder and select Open Git Bash Here. This will open a git terminal window.
+- In the Terminal window, type git clone _the url copied from github_
+
+**3.** Download (if needed) Visual Studio Code and open folder containing cloned app
+
+**4.** Create the .env folder and edit to add your api key and a path to the DB. The api key is for https://api.openweathermap.org api. The DB info is on the project form. The variable name for the api key is API_KEY
+
+**5.** Now that the app is downloaded on your PC and the env file is created, close VSC and open bash. Make sure you are in the project folder:
+
+- pwd - will tell you the path you are currently
+- cd to the desired folder containing that is the recently cloned project. It will be called Munro-Express
+
+**6.** After verifying you are in the correct path _your path name here/Munro-Express_,
+
+- type **npm install** to install the needed dependencies
+- the bash window will show information such as how many packages are installed.
+
+**7.** Type **npm start** to start the app
+
+**8.** You can Ctrl+Click on type http://localhost:1776/ in a browser window to start the app. _Ctrl C_ will stop the process in bash. _Exit_ will exit bash.
+
+**9.** If you get an error that a process is already running, use these commands to find the processes on port 1776 and to kill them:
+*netstat -ano | findstr :1776
+*taskkill /PID ##### /F _where ##### is the process id from the above command_
+
+- **Additional Notes**
+  The apps uses dependecies of axios, cherrio (used to get picture from a page-free/common/ethical), cors, dotenv, express, moment (used for time conversion), mongodb and serve-favicon.
+
+The database can be erased (by going to the MongoDB web page) and will be loaded on first run of the app. It will only be read if data exists.
+
+Enjoy the app, but keep in mind the Wikimedia API is making requests without an access token and is limited to 500 requests per hour per IP address.
+
+With OpenWeatherMap's free plan, you can make 60 API calls per minute and 1,000 API calls per day, but you do need to register and get an API key (see info above about .env file)
+
+What I would like to do to help the app: Add the other Munros. Add functionality such as seeing the location on a map, listening to the gaelic pronuciation, letting you enter your location in Scotland and telling you which Munros are closest.
+
+Latha Math! (or Good Day!)
