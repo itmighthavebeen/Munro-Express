@@ -286,6 +286,7 @@ button {
   #image-container {
     height: 30%;
     width: 30%;
+    overflow: hidden;
   }
   #image-container-on-weather {
     height: 30%;

@@ -266,9 +266,10 @@ app.get("/munro-image", async (req, res) => {
         console.log("The URLs do not have the same file name.");
       }
 
-      // Check if the image URL contains 'commons-logo'
+      // Check if the image URL contains 'commons-logo' or map
       if (
         !imagePageUrl.includes("Commons-logo") &&
+        !imagePageUrl.includes("map") &&
         validImageExtensions.includes(imageExtension) &&
         different_Images
       ) {
