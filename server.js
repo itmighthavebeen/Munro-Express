@@ -174,7 +174,8 @@ function compareUrlsUsingIncludes(url1, url2) {
   fileName1 = normalizeFileName(fileName1);
   fileName2 = normalizeFileName(fileName2);
 
-  console.log("Normalized 1 and 2", fileName1, fileName2);
+  //used for testing
+  //console.log("Normalized 1 and 2", fileName1, fileName2);
 
   return fileName1 === fileName2;
 }
@@ -210,7 +211,8 @@ async function getImageFromPage(url) {
 app.get("/munro-image", async (req, res) => {
   try {
     const { name } = req.query;
-    console.log("Mountain name for query:", name);
+
+    //console.log("Mountain name for query:", name);
 
     if (!name) {
       return res.status(400).json({ message: "Mountain name is required" });
@@ -260,10 +262,10 @@ app.get("/munro-image", async (req, res) => {
       let different_Images = false;
       // Check if the file names are the same
       if (compareUrlsUsingIncludes(imagePageUrl, thumbnailUrl)) {
-        console.log("The URLs have the same file name:", imagePageUrl);
+        //  console.log("The URLs have the same file name:", imagePageUrl);
       } else {
         different_Images = true;
-        console.log("The URLs do not have the same file name.");
+        //   console.log("The URLs do not have the same file name.");
       }
 
       // Check if the image URL contains 'commons-logo' or map
@@ -273,7 +275,7 @@ app.get("/munro-image", async (req, res) => {
         validImageExtensions.includes(imageExtension) &&
         different_Images
       ) {
-        console.log("this is a valid url", imagePageUrl);
+        //  console.log("this is a valid url", imagePageUrl);
         validImageUrl = imagePageUrl;
         break; // Exit the loop once we find the first valid image URL
       }
@@ -298,7 +300,7 @@ app.get("/munro-image", async (req, res) => {
       imageUrls.push({ type: "thumbnail", url: thumbnailUrl });
     }
 
-    console.log("Image URLs with desc:", imageUrls);
+    //  console.log("Image URLs with desc:", imageUrls);
 
     // Send the image URLs (Thumbnail + Scraped Image)
     res.json({ imageUrls });
